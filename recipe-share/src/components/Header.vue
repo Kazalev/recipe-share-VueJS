@@ -1,22 +1,22 @@
 <template>
   <div>
     <header>
-        <img class="logo"
-        src="https://lh3.googleusercontent.com/proxy/iM-qov-JQP6n4F0KsGYaOYnETJBrWAU5M9iZFzLPXEicJdZqzeCKg9yTI7Iou4ECssIEU9zYcR7nBAbt-gxvqIlZW6u19sAXRhsKp2KRfQ"
+        <router-link to="/home"> <img class="logo"
+        src="../assets/recipe-share-logo.png"
         alt="logo"
         width="200px"
         height="100px"
-        />
+        /> </router-link>
         <nav>
             <ul>
-                <li><a href="#">Салати</a></li>
+                <li> <router-link to="/register">Салати</router-link> </li>
                 <li><a href="#">Супи</a></li>
                 <li><a href="#">Основни Ястия</a></li>
                 <li><a href="#">Десерти</a></li>
                 <li><a href="#">Напитки</a></li>
             </ul>
         </nav>
-        <a class="cta" href="#"><button>Вход</button></a>
+        <router-link to="/login"><a class="cta"><button>Вход</button></a></router-link>
     </header>
   </div>
 </template>
