@@ -10,8 +10,8 @@
         <input type="password" name placeholder="Enter Password" />
         <button type="submit">Sign In</button>
         <br />
-        <router-link to="/home">
-          <a>Already have an account? Sign In</a>
+        <router-link to="/register">
+          <a>Don't have an account? Register!</a>
         </router-link>
       </form>
     </div>
@@ -29,15 +29,15 @@ export default {
 
 <style scoped>
 .wrapper {
-    background: url("../assets/img01.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    /* background-repeat: no-repeat;
+  background: url("../assets/img01.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* background-repeat: no-repeat;
     background-size: cover;
     background-position: center; */
-
+  height: 600px;
 }
 
 .loginBox {
@@ -45,11 +45,12 @@ export default {
   top: 300px;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 350px;
+  width: 400px;
   height: 420px;
   padding: 80px 40px;
   box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
 }
 
 h2 {

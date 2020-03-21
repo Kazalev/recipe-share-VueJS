@@ -9,11 +9,11 @@
         /> </router-link>
         <nav>
             <ul>
-                <li> <router-link to="/register">Салати</router-link> </li>
-                <li><a href="#">Супи</a></li>
-                <li><a href="#">Основни Ястия</a></li>
-                <li><a href="#">Десерти</a></li>
-                <li><a href="#">Напитки</a></li>
+                <li> <router-link to="/">Салати</router-link> </li>
+                <li> <router-link to="/">Супи</router-link> </li>
+                <li> <router-link to="/">Основни Ястия</router-link> </li>
+                <li> <router-link to="/">Десерти</router-link> </li>
+                <li> <router-link to="/">Напитки</router-link> </li>
             </ul>
         </nav>
         <router-link to="/login"><a class="cta"><button>Вход</button></a></router-link>
@@ -55,6 +55,7 @@ header {
 
 .logo {
     cursor: pointer;
+    margin: -15px;
 }
 
 nav {

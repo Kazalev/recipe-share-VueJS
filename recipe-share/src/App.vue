@@ -27,6 +27,11 @@ export default {
 }
 
 #app {
+  background: url("assets/img04.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 16px;

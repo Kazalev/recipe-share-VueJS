@@ -25,16 +25,16 @@
 
             <ul class="list-unstyled">
               <li>
-                <a href="https://softuni.bg/">≫ SoftUni</a>
+                <a href="https://softuni.bg/" target="_blank">≫ SoftUni</a>
               </li>
               <li>
-                <a href="https://softuni.bg/trainings/2820/vuejs-march-2020">≫ VueJS Course</a>
+                <a href="https://softuni.bg/trainings/2820/vuejs-march-2020" target="_blank">≫ VueJS Course</a>
               </li>
               <li>
-                <a href="#!">Link 3</a>
+                <a href="#!" target="_blank">Link 3</a>
               </li>
               <li>
-                <a href="#!">Link 4</a>
+                <a href="#!" target="_blank">Link 4</a>
               </li>
             </ul>
           </div>
@@ -49,16 +49,16 @@
 
             <ul class="list-unstyled">
               <li>
-                <a routerLink="/">≫ Home</a>
+                <router-link to="/home"><a>≫ Home</a></router-link>
               </li>
               <li>
-                <a routerLink="/register">≫ Registration</a>
+                <router-link to="/register"><a>≫ Registration</a></router-link>
               </li>
               <li>
-                <a routerLink="/login">≫ Login</a>
+                <router-link to="/login"><a>≫ Login</a></router-link>
               </li>
               <li>
-                <a routerLink="/products">≫ Products</a>
+                <a>≫ Products</a>
               </li>
             </ul>
           </div>

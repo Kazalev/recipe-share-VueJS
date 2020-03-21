@@ -1,17 +1,36 @@
 <template>
-  <div class="hello">
-    <!-- <h3>{{ msg }}</h3> -->
+  <div>
     <p>Hello from HelloWorld Component</p>
+    <br />
+    <p>Hello from HelloWorld Component</p>
+    <br />
+    <p>Hello from HelloWorld Component</p>
+    <br />
+    <ul>
+      <li v-for="(recipe, index) in recipes" v-bind:key="index">
+        <p>{{ recipe.ingredients }}</p>
+      </li>
+    </ul>
+
   </div>
 </template>
 
 <script>
+import { db } from "../firebase";
+console.log(db);
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+  name: "HelloWorld",
+  data: function() {
+    return {
+      recipes: []
+    };
+  },
+  firestore: {
+    recipes: db.collection('Recipes'),
+  },
+  methods: {}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -23,6 +42,7 @@ h3 {
 }
 
 p {
-  color: blue;
+  background-color: wheat;
+  color: red;
 }
 </style>

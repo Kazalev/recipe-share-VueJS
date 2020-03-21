@@ -1,4 +1,6 @@
+import './firebase';
 import Vue from 'vue';
+import { firestorePlugin } from 'vuefire';
 import App from './App.vue';
 import VueRouter from 'vue-router';
 import 'bootstrap';
@@ -9,8 +11,9 @@ import HelloWorld from './components/HelloWorld.vue';
 import Login from './components/Login.vue';
 import Register from './components/Register.vue';
 
-Vue.config.productionTip = false;
 Vue.use(VueRouter);
+Vue.use(firestorePlugin);
+Vue.config.productionTip = false;
 
 const router = new VueRouter({
   routes: [
