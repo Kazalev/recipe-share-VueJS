@@ -1,13 +1,16 @@
 <template>
   <div class="wrapper">
+    <div v-if="authUser">
+      <h1>Logged in as {{authUser.username}}</h1>
+    </div>
     <div class="loginBox">
-      <form>
-        <img src="../assets/cook.png" class="user" />
+      <form @submit.prevent="login">
+        <img src="../../assets/cook.png" class="user" />
         <h2>Login In Here</h2>
         <p>Email</p>
-        <input type="text" name placeholder="Enter Email" />
+        <input type="text" v-model="email" placeholder="Enter Email" />
         <p>Password</p>
-        <input type="password" name placeholder="Enter Password" />
+        <input type="password" v-model="password" placeholder="Enter Password" />
         <button type="submit">Sign In</button>
         <br />
         <router-link to="/register">
@@ -19,17 +22,46 @@
 </template>
 
 <script>
+import { auth } from "../../firebase";
+
+console.log(auth.currentUser);
+
 export default {
   name: "Login",
   data: function() {
-    return {};
+    return {
+      email: "",
+      password: "",
+      currentUser: {
+        email: ''
+      },
+      authUser: null
+    };
+  },
+  methods: {
+    login: function() {
+      auth
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          console.log(auth.currentUser.email);
+          this.currentUser.email === auth.currentUser.email;
+          alert(`You are logged in as ${this.email}`);
+          this.$router.push("/home");
+        })
+        .catch(err => {
+          alert(`Ooops. ${err.message}`);
+        });
+    }
+  },
+  created() {
+    auth.onAuthStateChanged(user => { this.authUser = user});
   }
 };
 </script>
 
 <style scoped>
 .wrapper {
-  background: url("../assets/img01.jpg") no-repeat center center fixed;
+  background: url("../../assets/img01.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

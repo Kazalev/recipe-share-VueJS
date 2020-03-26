@@ -1,35 +1,27 @@
 <template>
   <div>
-    <p>Hello from HelloWorld Component</p>
-    <br />
-    <p>Hello from HelloWorld Component</p>
-    <br />
-    <p>Hello from HelloWorld Component</p>
-    <br />
-    <ul>
-      <li v-for="(recipe, index) in recipes" v-bind:key="index">
-        <p>{{ recipe.ingredients }}</p>
-      </li>
-    </ul>
-
+    <app-recipe-card :passedRecipes="recipes"></app-recipe-card>
   </div>
 </template>
 
 <script>
 import { db } from "../firebase";
-console.log(db);
+import AppRecipeCard from "./recipes/recipeCard";
 
 export default {
-  name: "HelloWorld",
+  name: "Home",
   data: function() {
     return {
       recipes: []
     };
   },
   firestore: {
-    recipes: db.collection('Recipes'),
+    recipes: db.collection("Recipes")
   },
-  methods: {}
+  methods: {},
+  components: {
+    AppRecipeCard
+  }
 };
 </script>
 

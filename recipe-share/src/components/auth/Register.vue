@@ -1,13 +1,14 @@
 <template>
   <div class="wrapper">
     <div class="loginBox">
-      <form>
-        <img src="../assets/cook.png" class="user" />
+      <form @submit.prevent="register">
+        <img src="../../assets/cook.png" class="user" />
         <h2>Регистрация</h2>
         <input type="text" name placeholder="Enter Username" />
-        <input type="text" name placeholder="Enter Email" />
-        <input type="number" min="0" max="130" name placeholder="Enter Age" />
-        <input type="password" name placeholder="Enter Password" />
+        <input type="text" v-model="email" placeholder="Enter Email" />
+        <input type="number" min="0" max="130" name placeholder="Enter Age" /> 
+        <!-- TODO: v-model="age.number" -->
+        <input type="password" v-model="password" placeholder="Enter Password" />
         <input type="rePassword" name placeholder="Confirm Password" />
         <button type="submit">Регистрация</button>
         <br />
@@ -20,14 +21,36 @@
 </template>
 
 <script>
+import { auth } from "../../firebase";
+
 export default {
-  name: "Register"
+  name: "Register",
+  data: function() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    register: function() {
+      console.log({ email: this.email, password: this.password });
+
+      auth
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          alert(`Account created for ${this.email}`);
+        })
+        .catch(err => {
+          alert(`Ooops. ${err.message}`);
+        });
+    }
+  }
 };
 </script>
 
 <style scoped>
 .wrapper {
-  background: url("../assets/img01.jpg") no-repeat center center fixed;
+  background: url("../../assets/img01.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -117,7 +140,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 </style>
