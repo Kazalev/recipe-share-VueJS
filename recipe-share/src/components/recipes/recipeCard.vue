@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-link to="/recipeAdd"><button class="btn btn-success mt-4">Добави рецепта</button></router-link>
     <div class="container pt-4">
       <div class="row">
         <div class="col-sm" v-for="(recipe, index) in passedRecipes" :key="index">

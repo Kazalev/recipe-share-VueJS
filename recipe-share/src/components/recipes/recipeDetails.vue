@@ -2,6 +2,10 @@
   <div>
     <div class="container">
       <h1>{{recipe.name}}</h1>
+      <div class="actions">
+        <button @click="editHandler(recipe.id)" class="btn btn-primary">Edit</button>
+        <button @click="deleteHandler(recipe.id)" class="btn btn-danger">Delete</button>
+      </div>
       <div class="row">
         <div class="col">
           <img :src="recipe.img" :alt="recipe.name" />
@@ -24,7 +28,7 @@
       <div class="ing">
         <h5>Необходими съставки:</h5>
         <!-- {{recipe.ingredients}} -->
-        <ul
+        <!-- <ul
           class="fa-ul ingredients"
           v-for="(ingredient, index) in recipe.ingredients"
           :key="index"
@@ -36,25 +40,40 @@
             <p class="ingredient">{{ingredient.split(" - ")[0]}}</p>
             <p class="quantity">{{ingredient.split(" - ")[1]}}</p>
           </li>
-        </ul>
+        </ul> -->
       </div>
       <div class="textRecipe">
         <h5>Рецептата:</h5>
-       <div>
-         <p>{{recipe.recipe}}</p>
-       </div>
+        <div>
+          <p>{{recipe.recipe}}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { db } from "../../firebase";
+
 export default {
   props: {
     recipe: Object
   },
   data: function() {
     return {};
+  },
+  methods: {
+    deleteHandler(id) {
+      db.collection("Recipes")
+        .doc(id)
+        .delete();
+        this.$router.push("/home");
+
+      console.log("Recipe deleted successfully!");
+    },
+    editHandler(){
+      
+    }
   }
 };
 </script>
@@ -99,7 +118,7 @@ img {
   text-align: left;
 }
 
-ul p{
+ul p {
   display: inline;
 }
 
