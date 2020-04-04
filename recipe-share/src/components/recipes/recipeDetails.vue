@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="container">
-      <h1>{{recipe.name}}</h1>
-      <div class="actions">
-        <button @click="editHandler(recipe.id)" class="btn btn-primary">Edit</button>
+      <div v-if="email == 'kristian.kazalev@abv.bg'" class="actions p-2">
+        <button @click="editHandler(recipe)" class="btn btn-primary mr-2">Edit</button>
         <button @click="deleteHandler(recipe.id)" class="btn btn-danger">Delete</button>
       </div>
+      <h1>{{recipe.name}}</h1>
       <div class="row">
         <div class="col">
           <img :src="recipe.img" :alt="recipe.name" />
@@ -28,7 +28,7 @@
       <div class="ing">
         <h5>Необходими съставки:</h5>
         <!-- {{recipe.ingredients}} -->
-        <!-- <ul
+        <!-- <ul 
           class="fa-ul ingredients"
           v-for="(ingredient, index) in recipe.ingredients"
           :key="index"
@@ -40,10 +40,26 @@
             <p class="ingredient">{{ingredient.split(" - ")[0]}}</p>
             <p class="quantity">{{ingredient.split(" - ")[1]}}</p>
           </li>
-        </ul> -->
+        </ul>-->
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 20px;"></th>
+              <th scope="col">Съставка</th>
+              <th scope="col">Количество</th>
+            </tr>
+          </thead>
+          <tbody v-for="(ingredient, index) in recipe.ingredients" :key="index">
+            <tr>
+              <td style="text-align: center;"><i class="far fa-check-circle"></i></td>
+              <td>{{ingredient.split(" - ")[0]}}</td>
+              <td>{{ingredient.split(" - ")[1]}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="textRecipe">
-        <h5>Рецептата:</h5>
+        <h5><i class="far fa-file-alt"></i> Рецептата:</h5>
         <div>
           <p>{{recipe.recipe}}</p>
         </div>
@@ -56,29 +72,41 @@
 import { db } from "../../firebase";
 
 export default {
+  name: 'recipeDetails',
   props: {
     recipe: Object
   },
   data: function() {
-    return {};
+    return {
+      email: "",
+    };
   },
   methods: {
     deleteHandler(id) {
       db.collection("Recipes")
         .doc(id)
         .delete();
-        this.$router.push("/home");
+      this.$router.push("/");
 
       console.log("Recipe deleted successfully!");
     },
-    editHandler(){
-      
-    }
+    editHandler(recipe) {
+      this.$router.push({ name: "recipeEdit", params: { recipe } });
+    },
+  },
+  created() {
+    console.log(this.recipesToConfirm);
+    this.email = localStorage.getItem("UserEmail");
   }
 };
 </script>
 
 <style scoped>
+.actions {
+  text-align: right;
+  margin-bottom: -50px;
+}
+
 .container {
   color: black;
   border: 1px solid red;
@@ -94,13 +122,16 @@ h1 {
 }
 
 img {
-  margin-left: -40%;
+  float: left;
+  width: 500px;
+  height: 400px;
 }
 
 .sideInfo {
   border-left: 1px solid grey;
+  border-right: 1px solid grey;
   border-top: 6px solid grey;
-  margin-left: -30%;
+  margin-left: -50%;
 }
 
 .ingredients {
@@ -115,6 +146,10 @@ img {
   border-top: 2px solid grey;
   border-bottom: 2px solid grey;
   padding: 20px 0 20px 0;
+  text-align: left;
+}
+
+table{
   text-align: left;
 }
 
@@ -137,6 +172,10 @@ ul .quantity {
   border-bottom: 2px solid grey;
   padding: 20px 0 20px 0;
   text-align: left;
+}
+
+.far {
+  color: red;
 }
 
 .textRecipe p {

@@ -43,10 +43,13 @@ export default {
       auth
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          console.log(auth.currentUser.email);
+          // console.log(auth.currentUser.email);
+          // console.log(auth.currentUser.uid);
+          localStorage.setItem('UserEmail', auth.currentUser.email);
+          localStorage.setItem('userId', auth.currentUser.uid);
           this.currentUser.email === auth.currentUser.email;
           alert(`You are logged in as ${this.email}`);
-          this.$router.push("/home");
+          this.$router.push("/");
         })
         .catch(err => {
           alert(`Ooops. ${err.message}`);

@@ -1,10 +1,16 @@
 <template>
   <div>
-    <router-link to="/recipeAdd"><button class="btn btn-success mt-4">Добави рецепта</button></router-link>
+    <!-- <router-link to="/recipeAdd">
+      <button class="btn btn-success mt-4">Добави рецепта</button>
+    </router-link>
+    <router-link to="/recipeSuggestion">
+      <button class="btn btn-primary mt-4">Предложи рецепта</button>
+    </router-link> -->
     <div class="container pt-4">
       <div class="row">
-        <div class="col-sm" v-for="(recipe, index) in passedRecipes" :key="index">
+        <div class="col" v-for="(recipe, index) in passedRecipes" :key="index">
           <div class="card mb-3">
+            <!-- v-if="index < 4" -->
             <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
               <h5 class="card-header">{{ recipe.name }}</h5>
             </router-link>
@@ -12,11 +18,7 @@
               <h5 class="card-title">Special title treatment</h5>
               <h6 class="card-subtitle text-muted">Support card subtitle</h6>
             </div>-->
-            <img
-              style="height: 200px; width: 100%; display: block;"
-              v-bind:src="recipe.img"
-              v-bind:alt="recipe.name"
-            />
+            <img style="height: 250px;" v-bind:src="recipe.img" v-bind:alt="recipe.name" />
             <!-- <div class="card-body">
               <p
                 class="card-text"
@@ -44,7 +46,8 @@
 export default {
   components: {},
   props: {
-    passedRecipes: Array
+    passedRecipes: Array,
+    isAuth: Boolean
   },
   data: function() {
     return {};

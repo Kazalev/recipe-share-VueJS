@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <router-link to="/home">
+      <router-link to="/">
         <img
           class="logo"
           src="../../assets/recipe-share-logo.png"
@@ -13,29 +13,38 @@
       <nav>
         <ul>
           <li>
-            <router-link to="/">Салати</router-link>
+            <router-link to="/salads">Салати</router-link>
           </li>
           <li>
-            <router-link to="/">Супи</router-link>
+            <router-link to="/soups">Супи</router-link>
           </li>
           <li>
-            <router-link to="/">Основни Ястия</router-link>
+            <router-link to="/main">Основни Ястия</router-link>
           </li>
           <li>
-            <router-link to="/">Десерти</router-link>
+            <router-link to="/desserts">Десерти</router-link>
           </li>
           <li>
-            <router-link to="/">Напитки</router-link>
+            <router-link to="/drinks">Напитки</router-link>
           </li>
         </ul>
       </nav>
       <router-link to="/login">
-        <a class="cta">
+        <a v-if="!isAuth" class="cta">
           <button>Вход</button>
         </a>
       </router-link>
-        <a class="cta"><button @click="logout">Изход</button></a>
-        <p>Welcome, {{  }}!</p>
+      <router-link to="/register">
+        <a v-if="!isAuth" class="cta pl-2">
+          <button>Регистрация</button>
+        </a>
+      </router-link>
+      <router-link to="/userProfile">
+        <p v-if="isAuth">Welcome, {{ email.slice(0, -7) }} !</p>
+      </router-link>
+      <a v-if="isAuth" class="cta">
+        <button @click="logout">Изход</button>
+      </a>
     </header>
   </div>
 </template>
@@ -46,27 +55,28 @@ import { auth } from "../../firebase";
 export default {
   name: "Header",
   props: {
-    currentUser2: Object
+    isAuth: Boolean
   },
   data: function() {
     return {
-        isLoggedIn: false,
-        currentUser: false
+      email: localStorage.getItem("UserEmail")
     };
   },
   methods: {
-      logout: function(){
-          auth.signOut().then(() => {
-              console.log(`You are logged out!`);
-              //TODO... redirect
-              this.$router.push('/home');
-          });
-      }
+    logout: function() {
+      auth.signOut().then(() => {
+        localStorage.removeItem("UserEmail");
+        localStorage.removeItem("userId");
+        this.$emit("onAuth", false);
+
+        console.log(`You are logged out!`);
+        this.$router.push("/");
+      });
+    }
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
 

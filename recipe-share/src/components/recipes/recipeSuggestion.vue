@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hello from recipe Add Component</h1>
+    <h1>Hello from recipe Suggestion Component</h1>
     <div class="container">
       <div class="row">
         <div class="col"></div>
@@ -44,20 +44,13 @@
               @blur="$v.time.$touch"
             />
 
-            <input
-              class="form-control mb-3 error"
-              type="text"
-              placeholder="Съставка - Количество"
-              v-model="ingredients"
-            />
-
             <!-- if error -->
             <template v-if="$v.time.$error">
               <p v-if="!$v.time.required" class="error">Time is required!</p>
             </template>
             <!-- end if error -->
 
-            <!-- <div class="form-group" v-for="(ing, i) in ingredients" :key="i">
+            <div class="form-group" v-for="(ing, i) in ingredients" :key="i">
               <input
                 type="text"
                 class="form-control error"
@@ -78,9 +71,9 @@
                 </div>
               </div>
 
-              <i class="btn btn-success" @click="remove(i)" v-show="i || (!i && inputs.length > 1)">remove</i>
-              <i class="btn btn-success" @click="add(i)" v-show="i == inputs.length - 1">add</i>
-            </div> -->
+              <!-- <i class="btn btn-success" @click="remove(i)" v-show="i || (!i && inputs.length > 1)">remove</i>
+              <i class="btn btn-success" @click="add(i)" v-show="i == inputs.length - 1">add</i>-->
+            </div>
 
             <!-- if error -->
             <template v-if="$v.ingredients.$error">
@@ -131,19 +124,19 @@
             <textarea
               class="form-control mb-3 error"
               placeholder="Описание на рецептата..."
-              name="recipe"
-              id="recipe"
-              v-model="recipe"
-              @change="$v.recipe.$touch"
+              name="textRecipe"
+              id="textRecipe"
+              v-model="textRecipe"
+              @change="$v.textRecipe.$touch"
             ></textarea>
 
             <!-- if error -->
-            <template v-if="$v.recipe.$error">
-              <p v-if="!$v.recipe.required" class="error">Recipe is required!</p>
+            <template v-if="$v.textRecipe.$error">
+              <p v-if="!$v.textRecipe.required" class="error">Recipe is required!</p>
             </template>
             <!-- end if error -->
 
-            <button type="submit" class="btn btn-success">Добави рецепта</button>
+            <button type="submit" class="btn btn-success">Предложи рецепта</button>
           </form>
         </div>
         <div class="col"></div>
@@ -169,10 +162,14 @@ export default {
       name: "",
       imgUrl: "",
       time: null,
-      ingredients: [],
+      ingredients: [
+        {
+          name: ""
+        }
+      ],
       category: null,
       difficulty: null,
-      recipe: ""
+      textRecipe: ""
     };
   },
   validations: {
@@ -194,7 +191,7 @@ export default {
     difficulty: {
       required
     },
-    recipe: {
+    textRecipe: {
       required,
       minLength: minLength(10)
     }
@@ -207,23 +204,21 @@ export default {
       this.ingredients.splice(i, 1);
     },
     submitHandler() {
-      console.log([this.ingredients]);
-      let splited = this.ingredients.split(', ')
-      console.log(splited);
+      console.log("here");
 
       this.$v.$touch();
       if (this.$v.$error) {
         return;
       }
-      db.collection("Recipes").add({
+      db.collection("recipesToConfirm").add({
         name: this.name,
         img: this.imgUrl,
         time: this.time,
         category: this.category,
         difficulty: this.difficulty,
-        ingredients: splited,
+        ingredients: this.ingredients,
         date: new Date(),
-        recipe: this.recipe
+        recipe: this.textRecipe
       });
       console.log("Data was send successfully!");
     }

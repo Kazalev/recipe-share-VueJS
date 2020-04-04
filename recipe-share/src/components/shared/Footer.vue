@@ -69,11 +69,11 @@
           <!-- Grid column -->
           <div class="col-md-2 mx-auto">
             <!-- Links -->
-            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contacts</h5>
+            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Categories</h5>
 
             <ul class="list-unstyled">
               <li>
-                <a href="#!">Link 1</a>
+                <router-link to="/salads"><a>≫ Salads</a></router-link>
               </li>
               <li>
                 <a href="#!">Link 1</a>

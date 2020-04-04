@@ -4,12 +4,12 @@
       <form @submit.prevent="register">
         <img src="../../assets/cook.png" class="user" />
         <h2>Регистрация</h2>
-        <input type="text" name placeholder="Enter Username" />
+        <input type="text" v-model="username" placeholder="Enter Username" />
         <input type="text" v-model="email" placeholder="Enter Email" />
-        <input type="number" min="0" max="130" name placeholder="Enter Age" /> 
+        <input type="number" min="0" max="130" v-model="age" placeholder="Enter Age" />
         <!-- TODO: v-model="age.number" -->
         <input type="password" v-model="password" placeholder="Enter Password" />
-        <input type="rePassword" name placeholder="Confirm Password" />
+        <input type="password" placeholder="Confirm Password" />
         <button type="submit">Регистрация</button>
         <br />
         <router-link to="/login">
@@ -22,13 +22,19 @@
 
 <script>
 import { auth } from "../../firebase";
+import { db } from "../../firebase";
 
 export default {
   name: "Register",
   data: function() {
     return {
+      username: "",
       email: "",
-      password: ""
+      age: null,
+      password: "",
+      currentUser: {
+        email: ""
+      }
     };
   },
   methods: {
@@ -38,11 +44,27 @@ export default {
       auth
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          alert(`Account created for ${this.email}`);
+          // alert(`Account created for ${this.email}`);
+          auth
+            .signInWithEmailAndPassword(this.email, this.password)
+            .then(() => {
+              localStorage.setItem("UserEmail", auth.currentUser.email);
+              localStorage.setItem("userId", auth.currentUser.uid);
+              this.currentUser.email === auth.currentUser.email;
+              // alert(`You are logged in as ${this.email}`);
+              this.$router.push("/");
+            });
         })
         .catch(err => {
           alert(`Ooops. ${err.message}`);
         });
+
+      db.collection("Users").add({
+        username: this.username,
+        email: this.email,
+        age: this.age
+      });
+      console.log("User data was send successfully!");
     }
   }
 };
