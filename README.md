@@ -24,11 +24,11 @@ RecipeShare is simple VueJS Project Created for SoftUni Front-End Frameworks cou
 * User has access to register page.
 * User has access to login page.
 
+## Private part
+
 **Authorized user**
 * User can make suggestions for recipes.
 * User has access to his Profile page.
-
-## Private part
 
 **Admin**
 * Admin can add recipes.
