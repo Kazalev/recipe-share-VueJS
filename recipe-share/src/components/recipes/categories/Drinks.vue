@@ -1,19 +1,15 @@
 <template>
-  <div>
-    <div class="container">
-      <div class="row">
-        <div class="card-grid" v-for="(recipe, index) in recipes" :key="index">
-          <div class="card" style="width: 18rem;" v-if="recipe.category == 'Напитки' ">
-            <img :src="recipe.img" class="card-img-top" :alt="recipe.name" />
-            <div class="card-body">
-              <h5 class="card-title">
-                <p>{{ recipe.name }}</p>
-              </h5>
-              <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
-                <a href="#" class="btn btn-primary">Виж повече</a>
-              </router-link>
-            </div>
-          </div>
+  <div class="row">
+    <div class="card-grid" v-for="(recipe, index) in recipes" :key="index">
+      <div class="card" style="width: 18rem;" v-if="recipe.category == 'Напитки' ">
+        <img :src="recipe.img" class="card-img-top" :alt="recipe.name" />
+        <div class="card-body">
+          <h5 class="card-title">
+            <p>{{ recipe.name }}</p>
+          </h5>
+          <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
+            <a href="#" class="btn btn-primary">Виж повече</a>
+          </router-link>
         </div>
       </div>
     </div>

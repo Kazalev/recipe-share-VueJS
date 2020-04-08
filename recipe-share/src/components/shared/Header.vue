@@ -13,19 +13,19 @@
       <nav>
         <ul>
           <li>
-            <router-link to="/salads">Салати</router-link>
+            <router-link :to="{name: 'Salads'}">Салати</router-link>
           </li>
           <li>
-            <router-link to="/soups">Супи</router-link>
+            <router-link :to="{name: 'Soups'}">Супи</router-link>
           </li>
           <li>
-            <router-link to="/main">Основни Ястия</router-link>
+            <router-link :to="{name: 'Main'}">Основни Ястия</router-link>
           </li>
           <li>
-            <router-link to="/desserts">Десерти</router-link>
+            <router-link :to="{name: 'Desserts'}">Десерти</router-link>
           </li>
           <li>
-            <router-link to="/drinks">Напитки</router-link>
+            <router-link :to="{name: 'Drinks'}">Напитки</router-link>
           </li>
         </ul>
       </nav>

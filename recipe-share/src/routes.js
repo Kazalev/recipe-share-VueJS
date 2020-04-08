@@ -12,9 +12,18 @@ import Soups from "./components/recipes/categories/Soups.vue";
 import Main from "./components/recipes/categories/Main.vue";
 import Desserts from "./components/recipes/categories/Desserts.vue";
 import Drinks from "./components/recipes/categories/Drinks.vue";
+import Recipes from "./components/recipes/categories/recipes.vue";
 
 function authGuard(to, from, next) {
   if (localStorage.getItem("userId") !== null) {
+    next('/');
+  } else {
+    next();
+  }
+}
+
+function isAuthGuard(to, from, next) {
+  if (localStorage.getItem("userId") === null) {
     next('/');
   } else {
     next();
@@ -37,57 +46,67 @@ export default [
     beforeEnter: authGuard
   },
   {
-    path: '/recipe/details/:id',
-    name: 'recipeDetails',
-    component: recipeDetails,
-    props: true
-  },
-  {
     path: '/recipeAdd',
     name: 'recipeAdd',
     component: recipeAdd,
-    props: true
+    props: true,
+    beforeEnter: isAuthGuard
   },
   {
     path: '/recipeEdit',
     name: 'recipeEdit',
     component: recipeEdit,
-    props: true
+    props: true,
+    beforeEnter: isAuthGuard
   },
   {
     path: '/userProfile',
     name: 'userProfile',
-    component: userProfile
+    component: userProfile,
+    beforeEnter: isAuthGuard
   },
   {
     path: '/recipeSuggestion',
     name: 'recipeSuggestion',
-    component: recipeSuggestion
+    component: recipeSuggestion,
+    beforeEnter: isAuthGuard
   },
   {
-    path: '/salads',
-    name: 'Salads',
-    component: Salads
-  },
-  {
-    path: '/soups',
-    name: 'Soups',
-    component: Soups
-  },
-  {
-    path: '/main',
-    name: 'Main',
-    component: Main
-  },
-  {
-    path: '/desserts',
-    name: 'Desserts',
-    component: Desserts
-  },
-  {
-    path: '/drinks',
-    name: 'Drinks',
-    component: Drinks
+    path: '/recipes',
+    component: Recipes,
+    children: [
+      {
+        path: 'salads',
+        name: 'Salads',
+        component: Salads
+      },
+      {
+        path: 'soups',
+        name: 'Soups',
+        component: Soups
+      },
+      {
+        path: 'main',
+        name: 'Main',
+        component: Main
+      },
+      {
+        path: 'desserts',
+        name: 'Desserts',
+        component: Desserts
+      },
+      {
+        path: 'drinks',
+        name: 'Drinks',
+        component: Drinks
+      },
+      {
+        path: 'details/:id',
+        name: 'recipeDetails',
+        component: recipeDetails,
+        props: true
+      },
+    ]
   },
   {
     path: '*',
