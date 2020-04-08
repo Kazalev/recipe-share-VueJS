@@ -1,4 +1,17 @@
-# RecipeShare
+<h1 align="center">RecipeShare</h1>
+<p align="center">
+<a href="http://www.opensource.org/licenses/mit-license.php" target="_blank">
+	<img src="https://img.shields.io/badge/License-MIT-blue.svg">
+</a>
+<a href="https://vuejs.org/" target="_blank">
+	<img src="https://img.shields.io/badge/View-Vue-brightgreen.svg">
+</a>
+<a href="https://vuejs.org/" target="_blank">
+	<img src="https://img.shields.io/badge/Routing-Vue_router-yellowgreen.svg">
+</a>
+</p>
+
+![vue-logo](https://hackernoon.com/hn-images/1*ACR0gj0wbx91V_xgURifWg.png)
 
 ## Idea
 
