@@ -1,5 +1,13 @@
 <template>
   <div id="app">
+    <notifications group="foo" style="padding-top: 15px;" width="350px"/>
+    <notifications
+      group="auth"
+      style="padding-top: 15px;"
+      width="350px"
+      :duration="5000"
+      :speed="700"
+    />
     <Header @onAuth="isAuth = $event" :isAuth="isAuth" />
     <router-view @onAuth="isAuth = $event" :isAuth="isAuth"></router-view>
     <Footer />
@@ -14,7 +22,8 @@ export default {
   name: "App",
   data: function() {
     return {
-      isAuth: localStorage.getItem("userId") !== null
+      isAuth: localStorage.getItem("userId") !== null,
+      speed: 1000
     };
   },
   components: {

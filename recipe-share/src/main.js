@@ -8,7 +8,9 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
+import Notifications from 'vue-notification'
 
+Vue.use(Notifications);
 Vue.use(VueRouter);
 Vue.use(firestorePlugin);
 Vue.config.productionTip = false;

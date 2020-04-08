@@ -1,11 +1,21 @@
 <template>
   <div class="container pb-4">
-    <h1>Hello from User Profile page!</h1>
-    <p>{{ email }}</p>
+    <div class="container userInfo mt-4 pb-5">
+      <h1 class="p-4">Your personal information</h1>
+      <div class="row">
+        <img :src="usersFromDB[0].img" />
+        <div class="col-sm text">
+          <p>Email: {{ usersFromDB[0].email }}</p>
+          <p>Username: {{ usersFromDB[0].username }}</p>
+          <p>Age: {{ usersFromDB[0].age }}</p>
+        </div>
+      </div>
+    </div>
+
     <div>
       <table
         v-if="email == 'kristian.kazalev@abv.bg'"
-        class="table table-dark table-hover table-striped"
+        class="table table-dark table-hover table-striped mt-4"
       >
         <thead>
           <tr>
@@ -23,7 +33,7 @@
             <td>{{recipe.name}}</td>
             <td>{{recipe.time}}</td>
             <td>{{recipe.difficulty}}</td>
-            <td>{{recipe.time}} мин.</td>
+            <td>{{recipe.ingredients}} мин.</td>
             <td>
               <button @click="disapproveHandler(recipe.id)" class="btn btn-danger m-2">
                 <i class="far fa-window-close"></i>
@@ -60,15 +70,20 @@ export default {
     return {
       recipesToConfirm: [],
       moveRecipe: Object,
-      email: ""
+      email: "default",
+      usersFromDB: null
     };
   },
   firestore: {
-    recipesToConfirm: db.collection("recipesToConfirm")
+    recipesToConfirm: db.collection("recipesToConfirm"),
+    usersFromDB: db
+      .collection("Users")
+      .where("email", "==", localStorage.getItem("UserEmail"))
   },
   created() {
     console.log(this.recipesToConfirm);
     this.email = localStorage.getItem("UserEmail");
+    console.log(this.email);
   },
   methods: {
     approveHandler(recipe) {
@@ -89,11 +104,18 @@ export default {
         name: recipe.name,
         img: recipe.img,
         category: recipe.category,
+        ingredients: recipe.ingredients,
         time: recipe.time,
         difficulty: recipe.difficulty
       });
+
       console.log("Data was approved successfully!");
       console.log(recipe.name);
+      this.$notify({
+        group: "foo",
+        title: "Внимание!",
+        text: "Успешно одобрихте рецептата!"
+      });
 
       db.collection("recipesToConfirm")
         .doc(recipe.id)
@@ -105,10 +127,33 @@ export default {
         .delete();
 
       console.log("Recipe deleted successfully!");
+      this.$notify({
+        group: "foo",
+        title: "Внимание!",
+        text: "Успешно отхвърлихте рецептата!"
+      });
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
+.userInfo {
+  background: url("../../assets/userBG-2.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.userInfo img {
+  height: 340px;
+  width: 290px;
+  padding: 10px;
+}
+
+.text {
+  font-size: 26px;
+  text-align: left;
+}
 </style>

@@ -44,16 +44,23 @@
               @blur="$v.time.$touch"
             />
 
+            <!-- if error -->
+            <template v-if="$v.time.$error">
+              <p v-if="!$v.time.required" class="error">Time is required!</p>
+            </template>
+            <!-- end if error -->
+
             <input
               class="form-control mb-3 error"
               type="text"
               placeholder="Съставка - Количество"
               v-model="ingredients"
+              @blur="$v.ingredients.$touch"
             />
 
             <!-- if error -->
-            <template v-if="$v.time.$error">
-              <p v-if="!$v.time.required" class="error">Time is required!</p>
+            <template v-if="$v.ingredients.$error">
+              <p v-if="!$v.ingredients.required" class="error">Ingredients is required!</p>
             </template>
             <!-- end if error -->
 
@@ -80,13 +87,7 @@
 
               <i class="btn btn-success" @click="remove(i)" v-show="i || (!i && inputs.length > 1)">remove</i>
               <i class="btn btn-success" @click="add(i)" v-show="i == inputs.length - 1">add</i>
-            </div> -->
-
-            <!-- if error -->
-            <template v-if="$v.ingredients.$error">
-              <p v-if="!$v.ingredients.required" class="error">Ing is required!</p>
-            </template>
-            <!-- end if error -->
+            </div>-->
 
             <select
               class="form-control mb-3 error"
@@ -140,6 +141,7 @@
             <!-- if error -->
             <template v-if="$v.recipe.$error">
               <p v-if="!$v.recipe.required" class="error">Recipe is required!</p>
+              <p v-else-if="!$v.recipe.minLength" class="error">Recipe must be at least 10 symbols!</p>
             </template>
             <!-- end if error -->
 
@@ -207,14 +209,15 @@ export default {
       this.ingredients.splice(i, 1);
     },
     submitHandler() {
-      console.log([this.ingredients]);
-      let splited = this.ingredients.split(', ')
-      console.log(splited);
-
       this.$v.$touch();
       if (this.$v.$error) {
         return;
       }
+
+      console.log([this.ingredients]);
+      let splited = this.ingredients.split(", ");
+      console.log(splited);
+
       db.collection("Recipes").add({
         name: this.name,
         img: this.imgUrl,
@@ -225,7 +228,13 @@ export default {
         date: new Date(),
         recipe: this.recipe
       });
-      console.log("Data was send successfully!");
+
+      console.log("Recipe was added successfully!");
+      this.$notify({
+        group: "foo",
+        title: "Браво!",
+        text: "Успешно добавихте нова рецепта!"
+      });
     }
   }
 };

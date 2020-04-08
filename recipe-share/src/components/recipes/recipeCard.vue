@@ -30,7 +30,7 @@
               <li class="list-group-item">{{ recipe.category }}</li>
             </ul>-->
             <div class="card-body">
-              <router-link :to="{ name: 'recipeDetails', params: { recipe }}">
+              <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
                 <a href="#" class="card-link">Виж цялата рецепта!</a>
               </router-link>
             </div>

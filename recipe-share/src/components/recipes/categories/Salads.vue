@@ -10,7 +10,9 @@
                 <h5 class="card-title">
                   <p>{{ recipe.name }}</p>
                 </h5>
-                <a href="#" class="btn btn-primary">Виж повече</a>
+                <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
+                  <a href="#" class="btn btn-primary">Виж повече</a>
+                </router-link>
               </div>
             </div>
           </template>
@@ -46,6 +48,8 @@ export default {
 }
 
 img {
+  height: 220px;
+  width: 286px;
   border: 5px solid white;
 }
 </style>

@@ -1,34 +1,40 @@
 <template>
   <div>
     <div class="container">
-      <div v-if="email == 'kristian.kazalev@abv.bg'" class="actions p-2">
+      <div v-if="email == 'kristian.kazalev@abv.bg'" class="row actions p-2 justify-content-center">
         <button @click="editHandler(recipe)" class="btn btn-primary mr-2">Edit</button>
         <button @click="deleteHandler(recipe.id)" class="btn btn-danger">Delete</button>
       </div>
-      <h1>{{recipe.name}}</h1>
       <div class="row">
         <div class="col">
           <img :src="recipe.img" :alt="recipe.name" />
         </div>
         <div class="col-md-auto pt-4 sideInfo">
+          <h1>{{recipe.name}}</h1>
           <p>
-            <i class="far fa-bookmark"></i>
-            | {{recipe.category}}
+            <span>
+              <i style="width: 22px;" class="far fa-clipboard"></i>
+            </span>
+            {{recipe.category}}
           </p>
           <p>
-            <i class="fas fa-list-ol"></i>
-            | {{recipe.difficulty}}
+            <span>
+              <i class="fas fa-list-ol"></i>
+            </span>
+            {{recipe.difficulty}}
           </p>
           <p>
-            <i class="far fa-clock"></i>
-            | {{recipe.time}}
+            <span>
+              <i class="far fa-clock"></i>
+            </span>
+            {{recipe.time}} мин.
           </p>
         </div>
       </div>
       <div class="ing">
         <h5>Необходими съставки:</h5>
-        <!-- {{recipe.ingredients}} -->
-        <!-- <ul 
+        <!-- {{recipe.ingredients}}
+        <ul 
           class="fa-ul ingredients"
           v-for="(ingredient, index) in recipe.ingredients"
           :key="index"
@@ -40,7 +46,7 @@
             <p class="ingredient">{{ingredient.split(" - ")[0]}}</p>
             <p class="quantity">{{ingredient.split(" - ")[1]}}</p>
           </li>
-        </ul>-->
+        </ul> -->
         <table class="table table-sm table-hover">
           <thead>
             <tr>
@@ -51,7 +57,9 @@
           </thead>
           <tbody v-for="(ingredient, index) in recipe.ingredients" :key="index">
             <tr>
-              <td style="text-align: center;"><i class="far fa-check-circle"></i></td>
+              <td style="text-align: center;">
+                <i class="far fa-check-circle"></i>
+              </td>
               <td>{{ingredient.split(" - ")[0]}}</td>
               <td>{{ingredient.split(" - ")[1]}}</td>
             </tr>
@@ -59,7 +67,9 @@
         </table>
       </div>
       <div class="textRecipe">
-        <h5><i class="far fa-file-alt"></i> Рецептата:</h5>
+        <h5>
+          <i class="far fa-file-alt"></i> Рецептата:
+        </h5>
         <div>
           <p>{{recipe.recipe}}</p>
         </div>
@@ -72,45 +82,51 @@
 import { db } from "../../firebase";
 
 export default {
-  name: 'recipeDetails',
+  name: "recipeDetails",
   props: {
     recipe: Object
   },
   data: function() {
     return {
       email: "",
+      id: this.recipe.id,
+      FireDocument: Object
     };
   },
   methods: {
-    deleteHandler(id) {
-      db.collection("Recipes")
-        .doc(id)
-        .delete();
-      this.$router.push("/");
-
-      console.log("Recipe deleted successfully!");
-    },
     editHandler(recipe) {
       this.$router.push({ name: "recipeEdit", params: { recipe } });
     },
+    deleteHandler(id) {
+      let x = confirm("Ще изтриете тази рецепта завинаги!");
+      if (x) {
+        db.collection("Recipes")
+          .doc(id)
+          .delete();
+        this.$router.push("/");
+
+        console.log("Recipe deleted successfully!");
+      }
+    }
   },
   created() {
-    console.log(this.recipesToConfirm);
     this.email = localStorage.getItem("UserEmail");
+    console.log(this.id);
   }
 };
 </script>
 
 <style scoped>
-.actions {
-  text-align: right;
-  margin-bottom: -50px;
+.actions .btn {
+  width: 150px;
+  margin-bottom: 20px;
 }
 
 .container {
   color: black;
-  border: 1px solid red;
   background: whitesmoke;
+  padding-top: 15px;
+  padding-bottom: 20px;
 }
 
 h1 {
@@ -118,20 +134,26 @@ h1 {
 }
 
 .row {
-  background: white;
 }
 
 img {
   float: left;
-  width: 500px;
-  height: 400px;
+  width: 700px;
+  height: 450px;
+  border-radius: 2px;
 }
 
 .sideInfo {
   border-left: 1px solid grey;
   border-right: 1px solid grey;
   border-top: 6px solid grey;
-  margin-left: -50%;
+  margin-left: -35%;
+  text-align: left;
+  font-size: 23px;
+}
+.sideInfo span {
+  padding-right: 10px;
+  border-right: 1px solid grey;
 }
 
 .ingredients {
@@ -149,7 +171,7 @@ img {
   text-align: left;
 }
 
-table{
+table {
   text-align: left;
 }
 

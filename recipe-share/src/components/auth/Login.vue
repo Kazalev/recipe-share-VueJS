@@ -33,7 +33,7 @@ export default {
       email: "",
       password: "",
       currentUser: {
-        email: ''
+        email: ""
       },
       authUser: null
     };
@@ -45,10 +45,15 @@ export default {
         .then(() => {
           // console.log(auth.currentUser.email);
           // console.log(auth.currentUser.uid);
-          localStorage.setItem('UserEmail', auth.currentUser.email);
-          localStorage.setItem('userId', auth.currentUser.uid);
+          localStorage.setItem("UserEmail", auth.currentUser.email);
+          localStorage.setItem("userId", auth.currentUser.uid);
           this.currentUser.email === auth.currentUser.email;
-          alert(`You are logged in as ${this.email}`);
+          // alert(`You are logged in as ${this.email}`);
+          this.$notify({
+            group: "auth",
+            title: `Здравей, ` + auth.currentUser.email,
+            text: "Вече можеш да правиш предложения за рецепти!"
+          });
           this.$router.push("/");
         })
         .catch(err => {
@@ -57,7 +62,9 @@ export default {
     }
   },
   created() {
-    auth.onAuthStateChanged(user => { this.authUser = user});
+    auth.onAuthStateChanged(user => {
+      this.authUser = user;
+    });
   }
 };
 </script>
