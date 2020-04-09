@@ -221,6 +221,8 @@ export default {
           console.log("Recipe updated!");
           alert("Recipe updated!");
         });
+
+        this.$router.push("/");
     }
   }
 };

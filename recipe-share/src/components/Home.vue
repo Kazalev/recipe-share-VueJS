@@ -201,14 +201,11 @@
       </div>
       <!-- /.container -->
     </main>
-
-    <app-recipe-card :passedRecipes="recipes"></app-recipe-card>
   </div>
 </template>
 
 <script>
 import { db } from "../firebase";
-import AppRecipeCard from "./recipes/recipeCard";
 
 export default {
   name: "Home",
@@ -219,16 +216,15 @@ export default {
   },
   firestore: {
     recipes: db.collection("Recipes").orderBy("name")
-  },
-  methods: {},
-  components: {
-    AppRecipeCard
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.container{
+  background: grey;
+}
+
 .carousel-inner {
   height: 450px;
 }

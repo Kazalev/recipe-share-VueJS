@@ -211,7 +211,11 @@ export default {
     submitHandler() {
       this.$v.$touch();
       if (this.$v.$error) {
-        return;
+        return this.$notify({
+          group: "foo",
+          title: "Опаа!",
+          text: "Моля попълнете правилно всички полета!"
+        });
       }
 
       console.log([this.ingredients]);

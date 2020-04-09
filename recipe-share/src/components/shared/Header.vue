@@ -40,7 +40,7 @@
         </a>
       </router-link>
       <router-link to="/userProfile">
-        <p v-if="isAuth">Welcome, {{ email.slice(0, -7) }} !</p>
+        <p v-if="isAuth">Welcome,<br />{{ email.slice(0, -7) }} !</p>
       </router-link>
       <a v-if="isAuth" class="cta">
         <button @click="logout">Изход</button>

@@ -106,7 +106,8 @@ export default {
         category: recipe.category,
         ingredients: recipe.ingredients,
         time: recipe.time,
-        difficulty: recipe.difficulty
+        difficulty: recipe.difficulty,
+        recipe: recipe.recipe
       });
 
       console.log("Data was approved successfully!");
