@@ -13,19 +13,19 @@
       <nav>
         <ul>
           <li>
-            <router-link :to="{name: 'Salads'}">Салати</router-link>
+            <router-link class-active="active" :to="{name: 'Salads'}">Салати</router-link>
           </li>
           <li>
-            <router-link :to="{name: 'Soups'}">Супи</router-link>
+            <router-link class-active="active" :to="{name: 'Soups'}">Супи</router-link>
           </li>
           <li>
-            <router-link :to="{name: 'Main'}">Основни Ястия</router-link>
+            <router-link class-active="active" :to="{name: 'Main'}">Основни Ястия</router-link>
           </li>
           <li>
-            <router-link :to="{name: 'Desserts'}">Десерти</router-link>
+            <router-link class-active="active" :to="{name: 'Desserts'}">Десерти</router-link>
           </li>
           <li>
-            <router-link :to="{name: 'Drinks'}">Напитки</router-link>
+            <router-link class-active="active" :to="{name: 'Drinks'}">Напитки</router-link>
           </li>
         </ul>
       </nav>
@@ -40,7 +40,11 @@
         </a>
       </router-link>
       <router-link to="/userProfile">
-        <p v-if="isAuth">Welcome,<br />{{ email.slice(0, -7) }} !</p>
+        <p v-if="isAuth">
+          Welcome,
+          <br />
+          {{ email.slice(0, -7) }} !
+        </p>
       </router-link>
       <a v-if="isAuth" class="cta">
         <button @click="logout">Изход</button>
@@ -127,6 +131,10 @@ nav li a {
 }
 
 nav li a:hover {
+  color: #0088a9;
+}
+
+.active {
   color: #0088a9;
 }
 

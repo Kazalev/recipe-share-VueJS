@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="card-grid" v-for="(recipe, index) in recipes" :key="index">
       <div class="card" style="width: 18rem;" v-if="recipe.category == 'Напитки' ">
         <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">

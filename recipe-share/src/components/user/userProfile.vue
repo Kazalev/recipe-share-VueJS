@@ -1,6 +1,6 @@
 <template>
-  <div class="container pb-4">
-    <div class="container userInfo mt-4 pb-5">
+  <div class="container pb-4 pt-2">
+    <!-- <div class="container userInfo mt-4 pb-5">
       <h1 class="p-4">Your personal information</h1>
       <div class="row">
         <img :src="usersFromDB[0].img" />
@@ -10,18 +10,54 @@
           <p>Age: {{ usersFromDB[0].age }}</p>
         </div>
       </div>
+    </div> -->
+
+    <div class="row">
+      <div class="col-sm-4">
+      <div class="profile-card">
+        <div class="image-container">
+          <img :src="usersFromDB[0].img" style="width: 100%" />
+          <div class="title">
+            <h2>{{usersFromDB[0].name}}</h2>
+          </div>
+        </div>
+        <div class="main-container">
+          <p>
+            <i class="fas fa-user info"></i>
+            Username - {{usersFromDB[0].username}}
+          </p>
+          <p>
+            <i class="fas fa-at info"></i>
+            Email - {{usersFromDB[0].email}}
+          </p>
+          <p>
+            <i class="fas fa-sort-numeric-up info"></i>
+            Age - {{usersFromDB[0].age}}
+          </p>
+          <hr />
+
+          <blockquote class="blockquote text-center">
+            <p
+              class="mb-0"
+            >"Programming isn't about what you know; it's about what you can figure out.”</p>
+            <footer class="blockquote-footer">
+              <cite title="Source Title">Chris Pine</cite>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
     </div>
 
-    <div>
+    <div class="col-sm-8 pl-5">
       <table
         v-if="email == 'kristian.kazalev@abv.bg'"
         class="table table-dark table-hover table-striped mt-4"
       >
         <thead>
           <tr>
+            <th scope="col">Снимка</th>
             <th scope="col">Категория</th>
             <th scope="col">Име</th>
-            <th scope="col">Дата</th>
             <th scope="col">Трудност</th>
             <th scope="col">Време</th>
             <th scope="col">Действие</th>
@@ -29,11 +65,13 @@
         </thead>
         <tbody v-for="(recipe, index) in recipesToConfirm" :key="index">
           <tr>
+            <td><img :src="recipe.img" style="width: 75px; height: 50px;" /></td>
+          <router-link :to="{ name: 'recipeDetails', params: { recipe }}">
             <td>{{recipe.category}}</td>
+          </router-link>
             <td>{{recipe.name}}</td>
-            <td>{{recipe.time}}</td>
             <td>{{recipe.difficulty}}</td>
-            <td>{{recipe.ingredients}} мин.</td>
+            <td>{{recipe.time}} мин.</td>
             <td>
               <button @click="disapproveHandler(recipe.id)" class="btn btn-danger m-2">
                 <i class="far fa-window-close"></i>
@@ -56,6 +94,7 @@
         <button class="btn btn-primary mt-4">Предложи рецепта</button>
       </router-link>
     </div>
+  </div>
   </div>
 </template>
 
@@ -139,6 +178,10 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  background: #3b4a4a;
+}
+
 .userInfo {
   background: url("../../assets/userBG-2.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -156,5 +199,39 @@ export default {
 .text {
   font-size: 26px;
   text-align: left;
+}
+
+.profile-card {
+  color: black;
+  width: 400px;
+  margin: auto;
+  background: #fff;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.image-container {
+  position: relative;
+}
+
+.title h2 {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.info {
+  color: #4b4fe2;
+  margin-right: 16px;
+  font-size: 18px;
+}
+
+.main-container {
+  text-align: left;
+  padding: 20px;
+}
+
+tbody tr a td {
+  cursor: default;
+  color: white;
+  text-decoration: none;
 }
 </style>

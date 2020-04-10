@@ -22,6 +22,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.container{
+  background: #3b4a4a;
+  opacity: 0.9;
+}
 </style>

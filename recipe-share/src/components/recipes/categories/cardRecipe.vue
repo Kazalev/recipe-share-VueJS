@@ -1,16 +1,16 @@
 <template>
   <div class="row justify-content-center">
     <div class="card-grid" v-for="(recipe, index) in recipes" :key="index">
-      <div class="card" style="width: 18rem;" v-if="recipe.category == 'Супи' ">
+      <div class="card" style="width: 16rem; height: 20rem;" v-if="recipe.category == 'Десерти' ">
         <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
           <img :src="recipe.img" class="card-img-top" :alt="recipe.name" />
         </router-link>
-        <div class="card-body">
+        <div class="card-body align-items-end">
           <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
             <h6 class="card-title">{{ recipe.name }}</h6>
           </router-link>
           <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
-            <a href="#" class="btn btn-secondary">Виж повече</a>
+            <a href="#" style="" class="btn btn-secondary">Виж повече</a>
           </router-link>
         </div>
       </div>
@@ -19,22 +19,14 @@
 </template>
 
 <script>
-import { db } from "../../../firebase";
-
 export default {
-  name: "Soups",
-  data: function() {
-    return {
-      recipes: []
-    };
-  },
-  firestore: {
-    recipes: db.collection("Recipes").orderBy("category")
-  }
-};
+    props:{
+        recipes: Array
+    }
+}
 </script>
 
-<style scoped>
+<style>
 .card {
   display: inline-block;
   margin: 10px;
@@ -43,8 +35,8 @@ export default {
 
 img {
   cursor: default;
-  height: 220px;
-  width: 286px;
+  height: 180px;
+  width: 254px;
   border: 5px solid white;
 }
 

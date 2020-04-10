@@ -6,12 +6,12 @@
         <button @click="deleteHandler(recipe.id)" class="btn btn-danger">Delete</button>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-sm-7">
           <img :src="recipe.img" :alt="recipe.name" />
         </div>
-        <div class="col-md-auto pt-4 sideInfo">
-          <h1>{{recipe.name}}</h1>
-          <p>
+        <div class="col-sm-5 sideInfo">
+          <h2>{{recipe.name}}</h2>
+          <p class="pt-5">
             <span>
               <i style="width: 22px;" class="far fa-clipboard"></i>
             </span>
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="ing">
-        <h5>Необходими съставки:</h5>
+        <h2>Необходими съставки:</h2>
         <!-- {{recipe.ingredients}}
         <ul 
           class="fa-ul ingredients"
@@ -46,21 +46,20 @@
             <p class="ingredient">{{ingredient.split(" - ")[0]}}</p>
             <p class="quantity">{{ingredient.split(" - ")[1]}}</p>
           </li>
-        </ul> -->
+        </ul>-->
         <table class="table table-sm table-hover">
           <thead>
             <tr>
-              <th scope="col" style="width: 20px;"></th>
               <th scope="col">Съставка</th>
               <th scope="col">Количество</th>
             </tr>
           </thead>
           <tbody v-for="(ingredient, index) in recipe.ingredients" :key="index">
             <tr>
-              <td style="text-align: center;">
-                <i class="far fa-check-circle"></i>
+              <td @click="$event.target.classList.toggle('green')">
+                <i class="fas fa-check-circle"></i>
+                {{ingredient.split(" - ")[0]}}
               </td>
-              <td>{{ingredient.split(" - ")[0]}}</td>
               <td>{{ingredient.split(" - ")[1]}}</td>
             </tr>
           </tbody>
@@ -121,36 +120,41 @@ export default {
   width: 150px;
   margin-bottom: 20px;
 }
-
+.green {
+  color: #89c245;
+}
 .container {
   color: black;
   background: whitesmoke;
   padding-top: 15px;
   padding-bottom: 20px;
+  width: 1000px;
 }
 
-h1 {
+h2 {
   border-bottom: 1px solid rebeccapurple;
 }
 
-.row {
-}
-
 img {
-  float: left;
-  width: 700px;
-  height: 450px;
+  max-width: 580px;
+  width: auto;
+  height: 350px;
   border-radius: 2px;
 }
 
 .sideInfo {
-  border-left: 1px solid grey;
-  border-right: 1px solid grey;
-  border-top: 6px solid grey;
-  margin-left: -35%;
-  text-align: left;
-  font-size: 23px;
 }
+
+.sideInfo h2 {
+  text-align: center;
+}
+
+.sideInfo p {
+  font-size: 24px;
+  text-align: left;
+  padding: 15px;
+}
+
 .sideInfo span {
   padding-right: 10px;
   border-right: 1px solid grey;
@@ -164,7 +168,7 @@ img {
 .ing {
   padding: 20px 0px 0 0; /* top, rigth, bottom, left */
 }
-.ing h5 {
+.ing h2 {
   border-top: 2px solid grey;
   border-bottom: 2px solid grey;
   padding: 20px 0 20px 0;
@@ -202,5 +206,9 @@ ul .quantity {
 
 .textRecipe p {
   text-align: justify;
+}
+
+table {
+  font-size: 21px;
 }
 </style>

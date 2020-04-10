@@ -24,7 +24,7 @@
           <a class="page-link" href="#">&raquo;</a>
         </li>
       </ul>
-    </div> -->
+    </div>-->
     <main role="main">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -34,25 +34,13 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img
-              src="../assets/food4.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
+            <img src="../assets/food4.jpg" class="d-block w-100" alt="..." />
           </div>
           <div class="carousel-item">
-            <img
-              src="../assets/food2.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
+            <img src="../assets/food2.jpg" class="d-block w-100" alt="..." />
           </div>
           <div class="carousel-item">
-            <img
-              src="../assets/food1.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
+            <img src="../assets/food1.jpg" class="d-block w-100" alt="..." />
           </div>
         </div>
         <a
@@ -79,7 +67,7 @@
       ==================================================-->
       <!-- Wrap the rest of the page in another container to center all the content. -->
 
-      <div class="container marketing pt-5">
+      <div class="container marketing p-5">
         <!-- Three columns of text below the carousel -->
         <div class="row">
           <div class="col-lg-4">
@@ -147,7 +135,7 @@
           <div class="col-md-5">
             <img
               class="featurette-image img-fluid mx-auto"
-              data-src="holder.js/500x500/auto"
+              src="http://kulinar.bg/pictures/3030_650_.jpg"
               alt="Generic placeholder image"
             />
           </div>
@@ -157,18 +145,23 @@
 
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">
+            <blockquote class="blockquote text-right pt-5">
+              <!-- <h2 class="featurette-heading">
               Oh yeah, it's that good.
               <span class="text-muted">See for yourself.</span>
-            </h2>
-            <p
-              class="lead"
-            >Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+              </h2>-->
+              <p
+                class="lead"
+              >„Водата е много важна част от нашата диета. Пийте много вода и избягвайте празните калории от продукти като безалкохолни напитки, енергийни напитки или сокове с добавена захар.“</p>
+              <footer class="blockquote-footer">
+                <cite title="Source Title">Джейми Оливър</cite>
+              </footer>
+            </blockquote>
           </div>
           <div class="col-md-5 order-md-1">
             <img
               class="featurette-image img-fluid mx-auto"
-              data-src="holder.js/500x500/auto"
+              src="../assets/water.jpg"
               alt="Generic placeholder image"
             />
           </div>
@@ -189,13 +182,11 @@
           <div class="col-md-5">
             <img
               class="featurette-image img-fluid mx-auto"
-              data-src="holder.js/500x500/auto"
+              src="http://kulinar.bg/pictures/3028_650_.jpg"
               alt="Generic placeholder image"
             />
           </div>
         </div>
-
-        <hr class="featurette-divider" />
 
         <!-- /END THE FEATURETTES -->
       </div>
@@ -221,15 +212,16 @@ export default {
 </script>
 
 <style scoped>
-.container{
-  background: grey;
+.container {
+  background: #3b4a4a;
+  opacity: 0.9;
 }
 
 .carousel-inner {
   height: 450px;
 }
 
-.col-lg-4{
+.col-lg-4 {
   border-radius: 4px;
   padding: 4px;
   opacity: 0.9;
