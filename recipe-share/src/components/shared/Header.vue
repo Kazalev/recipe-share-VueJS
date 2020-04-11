@@ -41,9 +41,9 @@
       </router-link>
       <router-link to="/userProfile">
         <p v-if="isAuth">
-          Welcome,
+          Добре дошъл,
           <br />
-          {{ email.slice(0, -7) }} !
+          {{ email.slice(0, -7) }}!
         </p>
       </router-link>
       <a v-if="isAuth" class="cta">
@@ -82,7 +82,8 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
+/* @import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap');
 
 * {
   box-sizing: border-box;
@@ -94,9 +95,9 @@ export default {
 li,
 a,
 button {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 21px;
   color: #edf0f1;
   text-decoration: none;
 }

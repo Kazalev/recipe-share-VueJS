@@ -10,7 +10,7 @@
         </router-link>
         <div class="card-body align-items-end">
           <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
-            <h6 class="card-title">{{ recipe.name }}</h6>
+            <h4 class="card-title">{{ recipe.name }}</h4>
           </router-link>
           <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
             <a href="#" style class="btn btn-secondary">Виж повече</a>
@@ -59,7 +59,7 @@ img {
   text-decoration: none;
 }
 
-.card-body a h6 {
+.card-body a h4 {
   cursor: default;
   color: black;
   text-decoration: none;

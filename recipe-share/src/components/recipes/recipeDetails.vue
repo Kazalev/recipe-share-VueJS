@@ -116,6 +116,10 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  font-size: 21px;
+}
+
 .actions .btn {
   width: 150px;
   margin-bottom: 20px;

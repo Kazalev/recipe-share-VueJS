@@ -7,7 +7,7 @@
         </router-link>
         <div class="card-body align-items-end">
           <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
-            <h6 class="card-title">{{ recipe.name }}</h6>
+            <h3 class="card-title">{{ recipe.name }}</h3>
           </router-link>
           <router-link :to="{ name: 'recipeDetails', params: { recipe, id: recipe.id }}">
             <a href="#" style="" class="btn btn-secondary">Виж повече</a>

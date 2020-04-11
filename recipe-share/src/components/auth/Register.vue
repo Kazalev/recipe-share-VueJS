@@ -163,6 +163,9 @@ export default {
 </script>
 
 <style scoped>
+*{
+  font-size: 22px;
+}
 .wrapper {
   background: url("../../assets/img01.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -189,6 +192,7 @@ h2 {
   margin: 0;
   padding: 0, 0, 20px;
   color: #1e90ff;
+  font-size: 28px;
   text-align: center;
 }
 
@@ -208,7 +212,7 @@ h2 {
   outline: none;
   height: 40px;
   color: #fff;
-  font-size: 16px;
+  font-size: 22px;
 }
 
 button {
@@ -228,7 +232,7 @@ button:hover {
 
 a {
   color: #fff;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
 }
 

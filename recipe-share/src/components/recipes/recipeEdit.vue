@@ -62,8 +62,6 @@
               v-model="recipeToUpdate.ingredients"
               @change="$v.recipeToUpdate.ingredients.$touch"
             ></textarea>
-            {{recipeToUpdate.ingredients}}
-
             <!-- if error -->
             <template v-if="$v.recipeToUpdate.ingredients.$error">
               <p v-if="!$v.recipeToUpdate.ingredients.required" class="error">Ingredients is required!</p>

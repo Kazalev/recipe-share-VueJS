@@ -34,6 +34,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -46,9 +48,7 @@ export default {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  font-size: 16px;
+  font-family: 'Cormorant Garamond', serif;
   color: #edf0f1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
