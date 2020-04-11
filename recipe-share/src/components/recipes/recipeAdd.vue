@@ -145,7 +145,7 @@
             </template>
             <!-- end if error -->
 
-            <button type="submit" class="btn btn-success">Добави рецепта</button>
+            <button type="submit" class="btn btn-success" :disabled="$v.$invalid">Добави рецепта</button>
           </form>
         </div>
         <div class="col"></div>

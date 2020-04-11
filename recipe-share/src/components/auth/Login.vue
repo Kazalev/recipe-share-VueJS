@@ -54,7 +54,7 @@ export default {
             title: `Здравей, ` + auth.currentUser.email,
             text: "Вече можеш да правиш предложения за рецепти!"
           });
-          this.$router.push("/");
+          this.$router.go("/");
         })
         .catch(err => {
           alert(`Ooops. ${err.message}`);

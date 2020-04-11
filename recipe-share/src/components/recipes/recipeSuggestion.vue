@@ -120,7 +120,7 @@
             </template>
             <!-- end if error -->
 
-            <button type="submit" class="btn btn-success">Предложи рецепта</button>
+            <button type="submit" class="btn btn-success" :disabled="$v.$invalid">Предложи рецепта</button>
           </form>
         </div>
         <div class="col"></div>

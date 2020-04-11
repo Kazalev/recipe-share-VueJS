@@ -3,14 +3,73 @@
     <div class="loginBox">
       <form @submit.prevent="register">
         <img src="../../assets/cook.png" class="user" />
-        <h2>Регистрация</h2>
-        <input type="text" v-model="username" placeholder="Enter Username" />
-        <input type="text" v-model="email" placeholder="Enter Email" />
-        <input type="number" min="0" max="130" v-model="age" placeholder="Enter Age" />
+        <h2>Register</h2>
+        <input
+          type="text"
+          v-model="username"
+          @blur="$v.username.$touch"
+          placeholder="Enter Username"
+        />
+        <!-- if error -->
+        <template v-if="$v.username.$error">
+          <p v-if="!$v.username.required" class="error">Username is required!</p>
+        </template>
+        <!-- end if error -->
+
+        <input type="text" v-model="email" @blur="$v.email.$touch" placeholder="Enter Email" />
+        <!-- if error -->
+        <template v-if="$v.email.$error">
+          <p v-if="!$v.email.required" class="error">Email is required!</p>
+        </template>
+        <!-- end if error -->
+
+        <input
+          type="text"
+          v-model="fullName"
+          @blur="$v.fullName.$touch"
+          placeholder="Enter Full Name"
+        />
+        <!-- if error -->
+        <template v-if="$v.fullName.$error">
+          <p v-if="!$v.fullName.required" class="error">Name is required!</p>
+        </template>
+        <!-- end if error -->
+
+        <input
+          type="number"
+          min="0"
+          max="130"
+          v-model.number="age"
+          @blur="$v.age.$touch"
+          placeholder="Enter Age"
+        />
+        <!-- if error -->
+        <template v-if="$v.age.$error">
+          <p v-if="!$v.age.required" class="error">Age is required!</p>
+        </template>
+        <!-- end if error -->
         <!-- TODO: v-model="age.number" -->
-        <input type="password" v-model="password" placeholder="Enter Password" />
-        <input type="password" placeholder="Confirm Password" />
-        <button type="submit">Регистрация</button>
+
+        <input type="text" v-model="img" @blur="$v.img.$touch" placeholder="Enter Image URL" />
+        <!-- if error -->
+        <template v-if="$v.img.$error">
+          <p v-if="!$v.img.required" class="error">Image is required!</p>
+        </template>
+        <!-- end if error -->
+
+        <input type="password" v-model="password" @blur="$v.password.$touch" placeholder="Enter Password" />
+        <template v-if="$v.password.$error">
+          <p v-if="!$v.password.required" class="error">Password is required</p>
+          <p v-if="!$v.password.minLength" class="error">Password should be more than 6 symbols!</p>
+        </template>
+
+        <input type="password" v-model="rePassword" @blur="$v.rePassword.$touch" placeholder="Confirm Password" />
+        <template v-if="$v.rePassword.$error">
+          <p v-if="!$v.rePassword.sameAs" class="error">Passwords don't match!</p>
+        </template>
+
+
+        <button type="submit" :disabled="$v.$invalid">Register</button>
         <br />
         <router-link to="/login">
           <a>Already have an account? Sign In!</a>
@@ -23,19 +82,50 @@
 <script>
 import { auth } from "../../firebase";
 import { db } from "../../firebase";
+import { validationMixin } from "vuelidate";
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 
 export default {
   name: "Register",
+  mixins: [validationMixin],
   data: function() {
     return {
       username: "",
       email: "",
-      age: null,
+      fullName: "",
+      age: "",
+      img: "",
       password: "",
+      rePassword: "",
       currentUser: {
         email: ""
       }
     };
+  },
+  validations: {
+    username: {
+      required
+    },
+    email: {
+      required,
+      email
+    },
+    fullName: {
+      required
+    },
+    age: {
+      required
+    },
+    img: {
+      required
+    },
+    password: {
+      required,
+      minLength: minLength(6)
+    },
+    rePassword: {
+      sameAs: sameAs("password")
+    },
   },
   methods: {
     register: function() {
@@ -52,7 +142,7 @@ export default {
               localStorage.setItem("userId", auth.currentUser.uid);
               this.currentUser.email === auth.currentUser.email;
               // alert(`You are logged in as ${this.email}`);
-              this.$router.push("/");
+              this.$router.go("/");
             });
         })
         .catch(err => {
@@ -62,7 +152,9 @@ export default {
       db.collection("Users").add({
         username: this.username,
         email: this.email,
-        age: this.age
+        fullName: this.fullName,
+        age: this.age,
+        img: this.img
       });
       console.log("User data was send successfully!");
     }
@@ -77,16 +169,16 @@ export default {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 700px;
+  height: 750px;
 }
 
 .loginBox {
   position: relative;
-  top: 350px;
+  top: 400px;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 550px;
-  height: 530px;
+  height: 650px;
   padding: 80px 40px;
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.7);
@@ -152,6 +244,17 @@ a {
   top: calc(-100px / 2);
   left: calc(50% - 50px);
   border-radius: 50%;
+}
+
+/* if error */
+
+p.error {
+  text-align: left;
+  background-color: #f8d7da;
+  padding: 1px;
+  font-size: 16px;
+  border-radius: 3px;
+  color: black;
 }
 
 /* Chrome, Safari, Edge, Opera */

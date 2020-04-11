@@ -128,7 +128,7 @@
 
             <!-- <vue-editor v-model="recipeToUpdate.recipe" /> -->
 
-            <button type="submit" class="btn btn-success">Промени рецепта</button>
+            <button type="submit" class="btn btn-success" :disabled="$v.$invalid">Промени рецепта</button>
           </form>
         </div>
         <div class="col"></div>

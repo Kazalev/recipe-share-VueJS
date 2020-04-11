@@ -18,7 +18,7 @@
         <div class="image-container">
           <img :src="usersFromDB[0].img" style="width: 100%" />
           <div class="title">
-            <h2>{{usersFromDB[0].name}}</h2>
+            <h2>{{usersFromDB[0].fullName}}</h2>
           </div>
         </div>
         <div class="main-container">
