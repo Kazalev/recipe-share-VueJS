@@ -180,6 +180,7 @@ export default {
 <style scoped>
 .container {
   background: #3b4a4a;
+  font-size: 22px;
 }
 
 .userInfo {
