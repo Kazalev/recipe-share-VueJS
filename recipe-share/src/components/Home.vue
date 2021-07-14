@@ -26,9 +26,17 @@
       </ul>
     </div>-->
     <main role="main">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-ride="carousel"
+      >
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li
+            data-target="#carouselExampleIndicators"
+            data-slide-to="0"
+            class="active"
+          ></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
@@ -65,7 +73,7 @@
 
       <div class="container marketing p-5">
         <!-- Three columns of text below the carousel -->
-        
+
         <div class="row">
           <div class="col-lg-4">
             <img
@@ -76,9 +84,16 @@
               height="140"
             />
             <h2>Салати</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
             <p>
-              <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+              Donec sed odio dui. Etiam porta sem malesuada magna mollis
+              euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
+              Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+              Praesent commodo cursus magna.
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="#" role="button"
+                >View details &raquo;</a
+              >
             </p>
           </div>
           <!-- /.col-lg-4 -->
@@ -91,9 +106,16 @@
               height="140"
             />
             <h2>Основно</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
             <p>
-              <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
+              eget lacinia odio sem nec elit. Cras mattis consectetur purus sit
+              amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor
+              mauris condimentum nibh.
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="#" role="button"
+                >View details &raquo;</a
+              >
             </p>
           </div>
           <!-- /.col-lg-4 -->
@@ -106,9 +128,16 @@
               height="140"
             />
             <h2>Десерти</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             <p>
-              <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+              Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
+              egestas eget quam. Vestibulum id ligula porta felis euismod
+              semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+              condimentum nibh, ut fermentum massa justo sit amet risus.
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="#" role="button"
+                >View details &raquo;</a
+              >
             </p>
           </div>
           <!-- /.col-lg-4 -->
@@ -125,14 +154,16 @@
               Oh yeah, it's that good.
               <span class="text-muted">See for yourself.</span>
               </h2>-->
-              <p
-                class="lead"
-              >„Едно от най-чудесните неща в живота е, че периодично трябва да прекратяваме дейността, с която сме се захванали, за да посветим своето внимание на храненето.“</p>
+              <p class="lead">
+                „Едно от най-чудесните неща в живота е, че периодично трябва да
+                прекратяваме дейността, с която сме се захванали, за да посветим
+                своето внимание на храненето.“
+              </p>
               <footer class="blockquote-footer">
                 <cite title="Source Title">Лучано Павароти</cite>
               </footer>
             </blockquote>
-            </div>
+          </div>
           <div class="col-md-5">
             <img
               class="featurette-image img-fluid mx-auto"
@@ -151,9 +182,11 @@
               Oh yeah, it's that good.
               <span class="text-muted">See for yourself.</span>
               </h2>-->
-              <p
-                class="lead"
-              >„Водата е много важна част от нашата диета. Пийте много вода и избягвайте празните калории от продукти като безалкохолни напитки, енергийни напитки или сокове с добавена захар.“</p>
+              <p class="lead">
+                „Водата е много важна част от нашата диета. Пийте много вода и
+                избягвайте празните калории от продукти като безалкохолни
+                напитки, енергийни напитки или сокове с добавена захар.“
+              </p>
               <footer class="blockquote-footer">
                 <cite title="Source Title">Джейми Оливър</cite>
               </footer>
@@ -176,9 +209,12 @@
               And lastly, this one.
               <span class="text-muted">Checkmate.</span>
             </h2>
-            <p
-              class="lead"
-            >Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">
+              Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
+              ligula porta felis euismod semper. Praesent commodo cursus magna,
+              vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+              commodo.
+            </p>
           </div>
           <div class="col-md-5">
             <img
@@ -201,14 +237,14 @@ import { db } from "../firebase";
 
 export default {
   name: "Home",
-  data: function() {
+  data: function () {
     return {
-      recipes: []
+      recipes: [],
     };
   },
   firestore: {
-    recipes: db.collection("Recipes").orderBy("name")
-  }
+    recipes: db.collection("Recipes").orderBy("name"),
+  },
 };
 </script>
 

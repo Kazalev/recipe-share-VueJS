@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <notifications group="foo" style="padding-top: 15px;" width="350px"/>
+    <notifications group="foo" style="padding-top: 15px" width="350px" />
     <notifications
       group="auth"
-      style="padding-top: 15px;"
+      style="padding-top: 15px"
       width="350px"
       :duration="5000"
       :speed="700"
@@ -20,21 +20,21 @@ import Footer from "./components/shared/Footer.vue";
 
 export default {
   name: "App",
-  data: function() {
+  data: function () {
     return {
       isAuth: localStorage.getItem("userId") !== null,
-      speed: 1000
+      speed: 1000,
     };
   },
   components: {
     Header,
-    Footer
-  }
+    Footer,
+  },
 };
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap");
 
 * {
   box-sizing: border-box;
@@ -48,7 +48,7 @@ export default {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   color: #edf0f1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
